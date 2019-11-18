@@ -31,11 +31,13 @@ class Project
     const TYPE_SILEX_WEB_PROJECT = 9;
     const TYPE_SYMFONY2_WEB_PROJECT = 10;
     const TYPE_SYMFONY1_WEB_PROJECT = 11;
+    const TYPE_SYMFONY34_WEB_PROJECT = 12;
 
     /**
      * @Exclude()
      */
     public static $types = array(
+        self::TYPE_SYMFONY34_WEB_PROJECT => 'Symfony3/4 Web Project',
         self::TYPE_SYMFONY2_WEB_PROJECT => 'Symfony2 Web Project',
         self::TYPE_SYMFONY1_WEB_PROJECT => 'symfony1 Web Project',
         self::TYPE_SILEX_WEB_PROJECT => 'Silex Web Project',
@@ -97,8 +99,7 @@ class Project
     {
         return array(
             'name' => $this->name,
-            'public' => !$this->private,
-            'description' => $this->description,
+          //  'description' => $this->description,
             'repositoryUrl' => $this->repositoryUrl,
             'type' => $this->type,
             'configuration' => $this->configuration,
@@ -196,36 +197,6 @@ class Project
     public function setRepositoryUrl($repositoryUrl)
     {
         $this->repositoryUrl = $repositoryUrl;
-
-        return $this;
-    }
-
-    /**
-     * @return bool
-     */
-    public function isPublic()
-    {
-        return !$this->private;
-    }
-
-    public function setPublic($isPublic = false)
-    {
-        $this->private = !$isPublic;
-
-        return $this;
-    }
-
-    /**
-     * @return bool
-     */
-    public function isPrivate()
-    {
-        return $this->private;
-    }
-
-    public function setPrivate($isPrivate = true)
-    {
-        $this->private = $isPrivate;
 
         return $this;
     }
