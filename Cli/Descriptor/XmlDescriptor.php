@@ -3,7 +3,7 @@
 /*
  * This file is part of the SensioLabsInsight package.
  *
- * (c) SensioLabs <contact@sensiolabs.com>
+ * (c) SensioLabs <support@symfony.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -23,7 +23,7 @@ class XmlDescriptor extends AbstractDescriptor
         $this->serializer = $serializer;
     }
 
-    protected function describeAnalysis(Analysis $analysis, array $options = array())
+    protected function describeAnalysis(Analysis $analysis, array $options = [])
     {
         $output = $options['output'];
         $output->writeln($this->serializer->serialize($analysis, 'xml'));

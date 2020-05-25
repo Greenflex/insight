@@ -3,7 +3,7 @@
 /*
  * This file is part of the SensioLabsInsight package.
  *
- * (c) SensioLabs <contact@sensiolabs.com>
+ * (c) SensioLabs <support@symfony.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -11,8 +11,8 @@
 
 namespace SensioLabs\Insight\Sdk\Model;
 
-use JMS\Serializer\Annotation\SerializedName;
 use JMS\Serializer\Annotation\Exclude;
+use JMS\Serializer\Annotation\SerializedName;
 use JMS\Serializer\Annotation\Type;
 use JMS\Serializer\Annotation\XmlList;
 
@@ -36,7 +36,7 @@ class Project
     /**
      * @Exclude()
      */
-    public static $types = array(
+    public static $types = [
         self::TYPE_SYMFONY34_WEB_PROJECT => 'Symfony3/4 Web Project',
         self::TYPE_SYMFONY2_WEB_PROJECT => 'Symfony2 Web Project',
         self::TYPE_SYMFONY1_WEB_PROJECT => 'symfony1 Web Project',
@@ -48,13 +48,13 @@ class Project
         self::TYPE_PHP_WEBSITE => 'PHP Web Project',
         self::TYPE_PHP_LIBRARY => 'PHP Library',
         self::TYPE_OTHER => 'Other',
-    );
+    ];
 
     /**
      * @Type("array<SensioLabs\Insight\Sdk\Model\Link>")
      * @XmlList(inline = true, entry = "link")
      */
-    private $links = array();
+    private $links = [];
 
     /**
      * @Type("string")
@@ -97,13 +97,13 @@ class Project
 
     public function toArray()
     {
-        return array(
+        return [
             'name' => $this->name,
           //  'description' => $this->description,
             'repositoryUrl' => $this->repositoryUrl,
             'type' => $this->type,
             'configuration' => $this->configuration,
-        );
+        ];
     }
 
     /**
@@ -177,7 +177,7 @@ class Project
 
     public function setType($type)
     {
-        if (!array_key_exists($type, static::$types)) {
+        if (!\array_key_exists($type, static::$types)) {
             throw new \InvalidArgumentException(sprintf('"%s" is not a valid type. You must pick one among "%"', $type, implode('", "', array_keys(static::$types))));
         }
 

@@ -3,7 +3,7 @@
 /*
  * This file is part of the SensioLabsInsight package.
  *
- * (c) SensioLabs <contact@sensiolabs.com>
+ * (c) SensioLabs <support@symfony.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -26,7 +26,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 class Application extends SymfonyApplication
 {
     const APPLICATION_NAME = 'SensioLabs Insight CLI';
-    const APPLICATION_VERSION = '1.6.0';
+    const APPLICATION_VERSION = '1.7.0';
 
     private $api;
     private $apiConfig;
@@ -34,9 +34,9 @@ class Application extends SymfonyApplication
 
     public function __construct()
     {
-        $this->apiConfig = array(
+        $this->apiConfig = [
             'base_url' => Api::ENDPOINT,
-        );
+        ];
 
         parent::__construct(static::APPLICATION_NAME, static::APPLICATION_VERSION);
     }
@@ -48,9 +48,10 @@ class Application extends SymfonyApplication
         }
 
         $config = $this->apiConfig;
-        if (array_key_exists('api_endpoint', $config)) {
+        if (\array_key_exists('api_endpoint', $config)) {
             $config['base_url'] = $config['api_endpoint'];
         }
+
         $this->api = new Api($config);
 
         if ($this->logFile) {

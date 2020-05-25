@@ -3,7 +3,7 @@
 /*
  * This file is part of the SensioLabsInsight package.
  *
- * (c) SensioLabs <contact@sensiolabs.com>
+ * (c) SensioLabs <support@symfony.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -12,6 +12,7 @@
 namespace SensioLabs\Insight\Cli\Command;
 
 use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Helper\Table;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
@@ -42,21 +43,20 @@ class ProjectsCommand extends Command implements NeedConfigurationInterface
             $output->writeln('There are no projects');
         }
 
-        $rows = array();
+        $rows = [];
         foreach ($projects as $project) {
             if ($project->getLastAnalysis()) {
                 $grade = $project->getLastAnalysis()->getGrade();
             } else {
                 $grade = 'This project has no analyses';
             }
-            $rows[] = array($project->getName(), $project->getUuid(), $grade);
+            $rows[] = [$project->getName(), $project->getUuid(), $grade];
         }
 
-        $this
-            ->getHelperSet()->get('table')
-            ->setHeaders(array('name', 'uuid', 'grade'))
+        $table = new Table($output);
+        $table->setHeaders(['name', 'uuid', 'grade'])
             ->setRows($rows)
-            ->render($output)
+            ->render()
         ;
     }
 }

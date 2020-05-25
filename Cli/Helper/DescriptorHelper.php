@@ -3,7 +3,7 @@
 /*
  * This file is part of the SensioLabsInsight package.
  *
- * (c) SensioLabs <contact@sensiolabs.com>
+ * (c) SensioLabs <support@symfony.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -22,7 +22,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 class DescriptorHelper extends Helper
 {
-    private $descriptors = array();
+    private $descriptors = [];
 
     public function __construct(Serializer $serializer)
     {
@@ -36,12 +36,12 @@ class DescriptorHelper extends Helper
 
     public function describe(OutputInterface $output, $object, $format = null, $showIgnoredViolation = false)
     {
-        $options = array(
+        $options = [
             'raw_text' => false,
             'format' => $format ?: 'txt',
             'output' => $output,
             'show_ignored_violations' => $showIgnoredViolation,
-        );
+        ];
         $options['type'] = 'txt' === $options['format'] ? OutputInterface::OUTPUT_NORMAL : OutputInterface::OUTPUT_RAW;
 
         if (!isset($this->descriptors[$options['format']])) {

@@ -3,7 +3,7 @@
 /*
  * This file is part of the SensioLabsInsight package.
  *
- * (c) SensioLabs <contact@sensiolabs.com>
+ * (c) SensioLabs <support@symfony.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -11,8 +11,8 @@
 
 namespace SensioLabs\Insight\Sdk;
 
-use SensioLabs\Insight\Sdk\Model\Error;
 use SensioLabs\Insight\Sdk\Exception\ApiParserException;
+use SensioLabs\Insight\Sdk\Model\Error;
 
 class Parser
 {
@@ -28,7 +28,7 @@ class Parser
 
         $document = new \DOMDocument();
         $document->validateOnParse = true;
-        if (!$document->loadXML($content, LIBXML_NONET | (defined('LIBXML_COMPACT') ? LIBXML_COMPACT : 0))) {
+        if (!$document->loadXML($content, LIBXML_NONET | (\defined('LIBXML_COMPACT') ? LIBXML_COMPACT : 0))) {
             libxml_disable_entity_loader($disableEntities);
 
             libxml_clear_errors();
